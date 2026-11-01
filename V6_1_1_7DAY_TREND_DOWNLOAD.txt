@@ -1,0 +1,10 @@
+PBF Rise Baking Burnaby Dashboard v6.1.1
+7-Day Trend CSV Download Fix
+
+- Per-logger download follows selected range: 1 Hour / 24 Hours / 7 Days.
+- Per-logger CSV includes calibrated Temperature + Relative Humidity.
+- New All Loggers button follows selected range and exports all loggers in one CSV.
+- All-loggers CSV columns:
+  Date, Time, Logger, Serial, Temperature (C), Humidity (%RH)
+- Seven-day downloads use 6-hour LI-COR request chunks for reliability.
+- v6.1.0 downtime reporting and daily email are preserved.

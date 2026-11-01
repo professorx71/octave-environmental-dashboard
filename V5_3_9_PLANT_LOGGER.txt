@@ -1,0 +1,14 @@
+PBF Rise Baking Burnaby Dashboard v6.0.0
+
+CHANGES
+- Renamed LI-COR logger 21387391 from Tortilla T1 Cooler to Tortilla L1 Cooler.
+- Added LI-COR logger 22212731 as PBF Plant Temperature.
+- Model: MX1101.
+- The new plant logger displays Temperature and Relative Humidity on Dashboard and Trends.
+- The new plant logger supports Admin temperature/humidity calibration offsets.
+- Because no plant alarm setpoint was supplied, the new logger is configured as MONITOR ONLY.
+  It does not generate temperature alarm notifications or participate in the alarm scheduler.
+- Existing six process loggers retain their alarm limits and schedules.
+- Fixed a duplicate JavaScript declaration in the live mini-chart code and added monitor-only chart handling.
+
+If a temperature alarm is desired for PBF Plant Temperature later, define the required HIGH or LOW limit before enabling notifications.

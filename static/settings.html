@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PBF Settings</title>
+<link rel="stylesheet" href="/static/style.css?v=6.2.0">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <img class="rise-logo" src="/static/rise-logo.png" alt="Rise Baking Company">
+    <div><div class="eyebrow">PBF RISE BAKING BURNABY</div><h1>Monitoring Settings</h1>
+      <p>Role-protected alarm scheduling, calibration and administration · v6.2.0</p></div>
+  </div>
+  <nav><a href="/">Dashboard</a><a href="/trends">Trends</a><a href="/events">Events</a><a href="/audit">Audit</a><a class="active" href="/settings">Settings</a></nav>
+</header>
+<main>
+<section class="panel admin-panel">
+  <div id="loginBox">
+    <div class="section-head compact"><div><span class="eyebrow">AUTHORIZED ACCESS</span><h2>Admin / Operator Login</h2>
+      <p><b>Admin:</b> full settings, calibration, setpoints, equipment mode and passwords. <b>Operator:</b> alarm schedule only.</p></div></div>
+    <div class="login-grid">
+      <label>Username<input id="adminUser" autocomplete="username" placeholder="admin or operator"></label>
+      <label>Password<input id="adminPass" type="password" autocomplete="current-password"></label>
+      <button class="primary" onclick="login()">Login</button>
+    </div>
+    <div id="loginMsg" class="admin-message"></div>
+  </div>
+
+  <div id="settingsBox" class="hidden">
+    <div class="section-head compact"><div><span class="eyebrow">ACCESS CONTROL</span><h2>Temperature Monitoring Settings</h2>
+      <p id="roleDescription"></p></div><div class="actions"><span class="role-badge" id="roleBadge"></span><span class="admin-user" id="loggedInUser"></span><button onclick="logout()">Logout</button></div></div>
+    <div class="admin-note"><b>5-minute alarm reminders:</b> first alarm is immediate, then every 5 minutes while active. Scheduler times use Pacific Time. Calibration offsets are applied to live readings, trends, CSV reports and temperature alarm evaluation.</div>
+
+    <section class="all-schedule-panel">
+      <div class="section-head compact"><div><span class="eyebrow">ALL LOGGERS</span><h2>Weekly Alarm Notification Schedule</h2>
+        <p>Admin and Operator may change schedules. Live readings and logging continue even when notifications are scheduled OFF.</p></div></div>
+      <div class="weekday-preset"><div><strong>Monday–Friday · 24 Hours</strong><small>Notifications ON all day Monday-Friday · OFF Saturday-Sunday.</small></div>
+        <button class="primary" type="button" onclick="applyWeekday24hAll()">Apply Mon–Fri 24H to ALL Loggers</button></div>
+      <div id="allScheduleMsg" class="admin-message"></div>
+    </section>
+
+    <div id="configGrid" class="config-grid"></div>
+
+    <section id="reportPanel" class="password-panel hidden">
+      <div class="section-head compact"><div><span class="eyebrow">ADMIN ONLY</span><h2>Daily Maintenance Temperature Report</h2>
+        <p>Automatically email a 24-hour maintenance report with daily alarm-event count, downtime minutes, availability, alarm history, and all-logger temperature history.</p></div></div>
+      <div class="security-grid">
+        <div class="security-card"><h3>Automatic 24H Email</h3>
+          <label>Daily report<select id="reportEnabled"><option value="on">ENABLED</option><option value="off">DISABLED</option></select></label>
+          <label>Send time — Pacific Time<input id="reportTime" type="time" value="08:00"></label>
+          <label>Recipient email<input id="reportRecipient" type="email"></label>
+          <label>Report window<select id="reportHours"><option value="24">Last 24 hours</option><option value="48">Last 48 hours</option><option value="168">Last 7 days</option></select></label>
+          <button class="primary" type="button" onclick="saveReportConfig()">Save Daily Report Settings</button>
+          <div id="reportConfigMsg" class="admin-message"></div>
+        </div>
+        <div class="security-card"><h3>Maintenance Report Test</h3>
+          <p>The email contains two Excel-ready CSV attachments: downtime/event report and all-logger temperature/humidity history.</p>
+          <button class="primary" type="button" onclick="sendReportNow()">Email Report Now</button>
+          <div id="reportSendMsg" class="admin-message"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="securityPanel" class="password-panel hidden">
+      <div class="section-head compact"><div><span class="eyebrow">ADMIN ONLY</span><h2>Account Security</h2>
+        <p>Administrator may change Admin/Operator usernames and passwords. Usernames may contain letters, numbers, spaces and symbols (up to 64 printable characters). Admin/Operator passwords must be exactly 6 letters or numbers. The separate Caddy website password should remain strong.</p></div></div>
+      <div class="security-grid">
+        <div class="security-card"><h3>Change Admin Login</h3>
+          <label>Admin username — letters, numbers, spaces or symbols<input id="adminUsernameEdit" autocomplete="username" maxlength="64"></label>
+          <label>Current Admin password<input id="currentPassword" type="password" autocomplete="current-password"></label>
+          <label>New Admin password — exactly 6 letters/numbers<input id="newPassword" type="password" minlength="6" maxlength="6" pattern="[A-Za-z0-9]{6}" autocomplete="new-password"></label>
+          <label>Confirm new password<input id="confirmPassword" type="password" minlength="6" maxlength="6" pattern="[A-Za-z0-9]{6}" autocomplete="new-password"></label>
+          <button class="primary" onclick="changePassword()">Save Admin Login</button><div id="passwordMsg" class="admin-message"></div></div>
+        <div class="security-card"><h3>Set / Reset Operator Login</h3>
+          <label>Operator username — letters, numbers, spaces or symbols<input id="operatorUsername" value="operator" autocomplete="username" maxlength="64"></label>
+          <label>New Operator password — exactly 6 letters/numbers<input id="operatorPassword" type="password" minlength="6" maxlength="6" pattern="[A-Za-z0-9]{6}" autocomplete="new-password"></label>
+          <label>Confirm Operator password<input id="operatorConfirm" type="password" minlength="6" maxlength="6" pattern="[A-Za-z0-9]{6}" autocomplete="new-password"></label>
+          <button class="primary" onclick="setOperatorPassword()">Save Operator Login</button><div id="operatorPasswordMsg" class="admin-message"></div></div>
+      </div>
+    </section>
+  </div>
+</section>
+</main>
+<footer>PBF Rise Baking Burnaby · Protected Monitoring Settings · v6.2.0</footer>
+<script src="/static/settings.js?v=6.2.0"></script>
+</body>
+</html>

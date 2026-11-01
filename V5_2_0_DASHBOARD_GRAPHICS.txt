@@ -1,0 +1,47 @@
+PBF Rise Baking Burnaby Environmental Monitoring Dashboard v5.2.0
+
+NEW ON PAGE 1
+- Live temperature and humidity readings remain prominent.
+- Every logger card now includes a combined 24-hour graphic:
+  * Temperature trend
+  * Humidity trend
+  * Temperature alarm limit reference line
+- Temperature line changes to red when the logger is in alarm.
+- °C / °F selector remains on Page 1 and also converts the graph scale/limit.
+- Alarm banner remains at the very top of Page 1.
+- Rise Baking branding/logo retained.
+- Dashboard / Trends / Events navigation retained.
+
+LOGGER NAMES
+- Tortilla T1 Cooler
+- Tortilla L2 Cooler
+- Tortilla L3 Cooler
+- Bagel Cooler
+- Bagel Proofer 1
+- Bagel Proofer 2
+
+OTHER FEATURES RETAINED
+- LI-COR live monitoring
+- Gmail alarm/recovery emails
+- ntfy iPhone push notifications
+- 5-minute active-alarm reminders
+- Persistent acknowledgement and alarm/event history
+- Logger ONLINE / STALE / OFFLINE status
+- 24-hour CSV reports
+- Dedicated Trends page (1h / 24h / 7d)
+- Events page
+- LAN access via 0.0.0.0:8000
+- Pacific-time reporting
+
+INSTALL
+1. Stop all previous dashboard Command Prompt windows.
+2. Extract this ZIP into a NEW folder.
+3. Copy your existing private .env into the new folder.
+4. If this is a new PC, run enable_lan_firewall.bat once as Administrator.
+5. Run start_dashboard.bat.
+6. Open http://localhost:8000 on the server PC.
+7. For another device on the same LAN, use the LAN address printed by start_dashboard.bat.
+8. Press Ctrl+F5 once after upgrading.
+
+SECURITY
+Do not share your .env file and do not expose TCP port 8000 directly to the public Internet.

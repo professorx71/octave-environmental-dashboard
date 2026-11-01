@@ -1,0 +1,24 @@
+PBF Rise Baking Burnaby Dashboard v5.2.4
+Logger Communication Status Fix
+
+Why this revision was made:
+The LI-COR loggers on the mini-PC were showing data ages around 7–10 minutes.
+The previous dashboard classified anything older than 5 minutes as STALE and
+anything older than 15 minutes as OFFLINE, which was too aggressive for the
+observed reporting interval.
+
+New communication thresholds:
+- ONLINE: 0 to 15 minutes old
+- STALE: more than 15 minutes up to 30 minutes old
+- OFFLINE: more than 30 minutes old or no recent data
+
+The /api/current LI-COR lookback window was also increased from 20 minutes to
+40 minutes so the server can correctly distinguish STALE from OFFLINE.
+
+Temperature alarm limits, Gmail alarms, ntfy notifications, alarm reminders,
+event history, Trends, LAN access, and the Always-On mini-PC setup are unchanged.
+
+Upgrade on the mini-PC:
+1. Stop/restart the dashboard task after replacing the dashboard files.
+2. Keep your existing private .env.
+3. Run the updated installer if deploying this package as a fresh installation.

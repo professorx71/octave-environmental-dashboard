@@ -1,0 +1,35 @@
+PBF Rise Baking Burnaby Dashboard v6.0.0
+
+VERSION LABEL FIX
+
+The v6.0.0 package contained some inherited text labels from v6.0.0 in:
+- install_always_on.ps1
+- run_dashboard_service.ps1
+- start_dashboard.bat
+- setup guide/readme files
+
+That caused the installer window to display:
+    PBF Rise Baking Burnaby - Always-On Mini-PC Setup v6.0.0
+
+even though the package being installed was newer.
+
+v6.0.0 normalizes all displayed version labels throughout the package.
+
+FUNCTIONALITY RETAINED:
+- 30-minute active alarm reminders
+- Immediate first alarm notification
+- Recovery notification
+- NOT IN USE alarm suppression
+- Password-protected alarm setpoint/settings page
+- Windows trust-store support for ntfy HTTPS
+- Dedicated .venv Python environment
+- 24/7 Scheduled Task startup
+- 5-minute watchdog
+- Self-elevating Start / Stop / Restart helpers
+- LAN access and industrial dashboard theme
+
+UPGRADE:
+1. Extract v6.0.0 into a new folder.
+2. Copy your existing private .env into the new folder.
+3. Run INSTALL_ALWAYS_ON_MINIPC.bat as Administrator.
+4. After setup, open http://localhost:8000 or the displayed LAN address.

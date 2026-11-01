@@ -1,0 +1,13 @@
+PBF LI-COR Dashboard v5.1.1
+Fix: /trends and /events Internal Server Error.
+
+Cause:
+The new page routes referenced STATIC, but the server defines the static folder through BASE/"static".
+The routes now use the same proven path as the working dashboard home page.
+
+Pages:
+http://localhost:8000/
+http://localhost:8000/trends
+http://localhost:8000/events
+
+Install into a new folder, copy your private .env, run start_dashboard.bat, then Ctrl+F5.

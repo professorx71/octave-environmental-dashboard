@@ -1,0 +1,8 @@
+v4.9.2
+- Rebuilt from the known-working v4.8 base.
+- Fixes the v4.9/v4.9.1 Test Phone Push HTTP 500 bug.
+- Removes undefined alarm variables from /api/test-push.
+- MAX-priority concise active alarm notifications.
+- 5-minute phone reminders remain enabled.
+- Recovery push remains enabled.
+- Gmail alarm/reminder/recovery remains enabled.

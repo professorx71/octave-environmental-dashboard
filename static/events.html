@@ -1,0 +1,14 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PBF Alarm Events</title><link rel="stylesheet" href="/static/style.css?v=6.2.0"></head>
+<body><header class="topbar"><div class="brand"><img class="rise-logo" src="/static/rise-logo.png" alt="Rise Baking Company"><div><div class="eyebrow">PBF RISE BAKING BURNABY</div><h1>Alarm & Event History</h1><p>Persistent server-side log · industrial control room theme · v6.2.0 · Designed by Daniel Salazar</p></div></div>
+<nav><a href="/">Dashboard</a><a href="/trends">Trends</a><a class="active" href="/events">Events</a><a href="/settings">Settings</a></nav></header>
+<main><section class="section-head"><div><span class="eyebrow">AUDIT TRAIL</span><h2>Alarm Event Log</h2><p>Alarm, acknowledgement, reminder, notification and recovery history. Maintenance CSV reports open directly in Excel and include daily event count and downtime by logger.</p></div>
+<div class="actions"><button onclick="loadEvents()">Refresh</button>
+<a class="button-link" href="/api/maintenance-report.csv?hours=24">Download 24H Downtime CSV</a>
+<a class="button-link" href="/api/maintenance-report.csv?hours=720">Download 30-Day Downtime CSV</a>
+<a class="button-link" href="/api/temperature-history-all.csv?hours=24">Download 24H Temperature CSV</a>
+<a class="button-link" href="/audit">Audit Controls & Reports</a></div></section>
+<section class="panel"><div class="tablewrap"><table><thead><tr><th>Time</th><th>Logger</th><th>Event</th><th>Reading</th><th>Limit</th><th>Email</th><th>Phone Push</th></tr></thead><tbody id="alarmLog"></tbody></table></div></section></main>
+<footer>Audit retention policy protects alarm/event history from dashboard deletion.</footer>
+<script src="/static/events.js?v=6.2.0"></script></body></html>

@@ -1,0 +1,17 @@
+PBF LI-COR Dashboard v5.1.3 — LAN Access
+
+1. Stop all older dashboard Command Prompt windows.
+2. Extract v5.1.3 into a NEW folder.
+3. Copy your private .env into the new folder.
+4. Double-click enable_lan_firewall.bat ONCE and approve Windows UAC.
+5. Double-click start_dashboard.bat.
+6. The window prints the PC LAN address, such as http://192.168.2.50:8000
+7. On an iPhone/tablet/PC on the SAME network, open that address.
+
+localhost:8000 continues to work on the dashboard computer.
+
+SECURITY
+The firewall helper limits the inbound rule to Windows PRIVATE networks.
+Do NOT port-forward TCP 8000 on your router. This version has no Internet
+login/HTTPS layer. For remote/cellular access, use a secure VPN/tunnel with
+authentication. Never share your .env.

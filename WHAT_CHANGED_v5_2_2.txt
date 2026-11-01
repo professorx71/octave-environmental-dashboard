@@ -1,0 +1,16 @@
+
+PBF Rise Baking Burnaby Dashboard v5.2.2 - Industrial Control Room Theme
+
+What changed:
+1. Updated dashboard, trends, and events pages to an industrial / control room visual theme.
+2. Added darker control-room background with brighter cyan / green instrumentation accents.
+3. Upgraded cards, banners, navigation, and panels for a more industrial monitoring look.
+4. Kept thermometer and water-drop live reading graphics.
+5. Updated embedded chart colors to match the dark monitoring theme.
+6. Version labels updated to v5.2.2.
+
+How to install:
+- Replace your existing dashboard folder with this version.
+- Keep your .env file.
+- Run start_dashboard.bat
+- Refresh the browser with Ctrl+F5.

@@ -1,0 +1,23 @@
+PBF Rise Baking Burnaby Dashboard v6.0.0
+
+ACCESS DENIED FIX
+
+The START_ALWAYS_ON_DASHBOARD helper now automatically requests Windows
+Administrator/UAC permission before starting the scheduled task.
+
+The previous v6.0.0 helper could show:
+    ERROR: Access is denied.
+
+That happened because the PBF Temperature Dashboard scheduled task runs under
+the SYSTEM account with highest privileges.
+
+New helpers:
+- START_ALWAYS_ON_DASHBOARD.bat
+- RESTART_ALWAYS_ON_DASHBOARD.bat
+- STOP_ALWAYS_ON_DASHBOARD.bat
+
+All three automatically request Administrator permission.
+
+For normal 24/7 operation:
+Run INSTALL_ALWAYS_ON_MINIPC.bat as Administrator once. After that, Windows
+starts the dashboard automatically at boot.

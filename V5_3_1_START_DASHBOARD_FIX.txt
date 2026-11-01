@@ -1,0 +1,29 @@
+PBF Rise Baking Burnaby Dashboard v6.0.0
+
+START_DASHBOARD FIX
+
+The v6.0.0 package inherited an old v5.1.3 start_dashboard.bat that used the
+global Windows Python installation. On the mini-PC this caused:
+
+    No module named uvicorn
+
+v6.0.0 fixes this by using:
+
+    .venv\Scripts\python.exe
+
+This is the dedicated Python environment created by INSTALL_ALWAYS_ON_MINIPC.bat.
+
+Normal 24/7 operation:
+- Run INSTALL_ALWAYS_ON_MINIPC.bat as Administrator once.
+- Windows Task Scheduler then starts the dashboard automatically at boot.
+- No Command Prompt needs to remain open.
+
+Manual testing:
+- Run start_dashboard.bat.
+- It now uses the dedicated .venv.
+- If .venv is missing, it tells you to run the Always-On installer first.
+
+Also added:
+    START_ALWAYS_ON_DASHBOARD.bat
+
+This starts the Windows scheduled task manually.

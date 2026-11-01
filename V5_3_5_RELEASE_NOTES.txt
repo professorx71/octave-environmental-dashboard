@@ -1,0 +1,38 @@
+PBF Rise Baking Burnaby Dashboard v6.0.0
+
+NEW: ALARM NOTIFICATION SCHEDULER
+- Password-protected scheduler per logger on Settings page.
+- Scheduler controls WHEN temperature alarm notifications are active.
+- Select active days, Alarm ON time, and Alarm OFF time.
+- Times use America/Vancouver (Pacific Time), including daylight-saving time.
+- Supports overnight schedules such as 22:00 to 06:00.
+- Manual NOT IN USE remains the master suppression and overrides the schedule.
+- Temperature/humidity readings continue to display and log while alarms are scheduled OFF.
+- If temperature is outside limit when the schedule becomes active, a fresh immediate alarm is generated on the next monitor cycle.
+- Scheduler suppression does NOT send a false RETURN TO NORMAL message.
+- Schedule configuration changes are recorded in the Event Log.
+
+UPDATED: DASHBOARD LIVE TREND
+- Main Dashboard mini graphs changed from 24 hours to 6 hours for ALL six loggers.
+- Both temperature and humidity are shown over the latest 6 hours.
+- Dedicated Trends page remains available for 1h / 24h / 7d analysis.
+- Existing 24-hour CSV/report functions remain unchanged.
+
+ALARM REMINDERS
+- Immediate alarm on first detection.
+- Reminder every 5 minutes while alarm remains active and monitoring is permitted.
+- One recovery notification when temperature actually returns to normal.
+
+SCHEDULER EXAMPLE
+If Tortilla T1 Cooler normally runs Monday-Friday 06:00-22:00:
+- Operating mode: RUNNING
+- Weekly scheduler: ON
+- Active days: Mon Tue Wed Thu Fri
+- Alarm ON: 06:00
+- Alarm OFF: 22:00
+Outside those hours, readings continue but alarm email/ntfy notifications are suppressed.
+
+SECURITY
+- Scheduler and setpoints require Admin login.
+- Admin password can be changed on the Settings page.
+- .env credentials are not included in this package.

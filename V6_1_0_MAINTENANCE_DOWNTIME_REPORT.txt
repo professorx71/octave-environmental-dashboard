@@ -1,0 +1,34 @@
+PBF Rise Baking Burnaby Dashboard v6.1.0
+Maintenance Downtime & Daily 24H Email Report
+
+NEW:
+1. Persistent temperature-alarm downtime history per logger.
+2. Daily event count and downtime minutes per logger.
+3. Overall availability percentage for the selected report window.
+4. Alarm episode history with start/end/duration/start/worst/recovery temperature.
+5. Alarm audit trail including 5-minute reminders, acknowledgements and recovery.
+6. All-logger calibrated temperature/humidity history CSV.
+7. Events page download buttons:
+   - 24H Downtime CSV
+   - 30-Day Downtime CSV
+   - 24H Temperature CSV
+8. Admin Settings panel for automatic maintenance email.
+9. Default automatic report: ENABLED, 08:00 Pacific, 24-hour window,
+   sent to the existing ALERT_EMAIL unless changed by Admin.
+10. Manual "Email Report Now" button.
+11. Automatic email is restricted to CLOUD-PRIMARY with notifications enabled,
+    helping prevent duplicate reports if a backup/test deployment is started.
+
+CSV files are UTF-8 Excel-ready and can be opened directly in Microsoft Excel.
+
+REPORT CONTENT:
+- Logger summary
+- Daily logger summary
+- Downtime history
+- Alarm event audit trail
+- Temperature statistics
+- Separate all-logger temperature/humidity history attachment
+
+NOTE:
+PBF Plant Temperature is MONITOR ONLY and is included in temperature statistics/history
+but does not create alarm downtime.

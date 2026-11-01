@@ -1,0 +1,12 @@
+PBF Rise Baking Burnaby Dashboard v6.0.4
+
+Authentication cleanup:
+- Includes check_auth_config.py in the OVH patch.
+- Fixes v6.0.3 helper-script username validation.
+- Admin/Operator usernames: 1-64 printable characters; letters, numbers,
+  spaces and symbols are allowed; leading/trailing spaces are trimmed.
+- Admin/Operator passwords: exactly 6 letters/numbers.
+- Password hashes are stored single-quoted in .env so Docker Compose treats
+  $ characters literally and does not emit hash-variable interpolation warnings.
+- python-dotenv loads .env with interpolation disabled.
+- Does not change Caddy credentials or plant monitoring configuration.

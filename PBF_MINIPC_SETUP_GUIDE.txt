@@ -1,0 +1,85 @@
+PBF RISE BAKING BURNABY
+DEDICATED 24/7 ENVIRONMENTAL MONITORING MINI-PC
+Dashboard v6.0.0
+
+WHAT THIS DOES
+--------------
+This turns a Windows mini-PC into the dedicated 24/7 server for:
+- LI-COR Cloud temperature/humidity monitoring
+- PBF Rise Baking Burnaby dashboard
+- Gmail alarms/recovery messages
+- ntfy iPhone notifications
+- 5-minute active-alarm reminders
+- Persistent alarm/event history
+- LAN access from office PCs, tablets, and phones
+
+AFTER INSTALLATION
+------------------
+- Dashboard starts automatically when Windows boots.
+- Nobody needs to log into Windows.
+- Task Scheduler restarts the dashboard if it crashes.
+- A watchdog checks the local web server every 5 minutes.
+- Windows sleep/hibernate is disabled while on AC power.
+
+PREPARE THE MINI-PC
+-------------------
+1. Use Ethernet if possible.
+2. Install Windows updates.
+3. Install Python 3.11 or newer.
+4. Extract this folder to a permanent location such as:
+   C:\PBF-Dashboard
+5. Copy your working PRIVATE .env file from your current laptop dashboard
+   into the new folder.
+
+INSTALL
+-------
+1. Right-click INSTALL_ALWAYS_ON_MINIPC.bat
+2. Choose Run as administrator.
+3. Wait until SETUP COMPLETE appears.
+4. Run OPEN_DASHBOARD.bat.
+5. Run DASHBOARD_STATUS.bat to verify the task and web server.
+
+BIOS / POWER FAILURE
+--------------------
+In BIOS/UEFI enable an option such as:
+- Restore on AC Power Loss = Power On
+- After Power Failure = Power On
+- AC Back = Always On
+
+This is important so the mini-PC automatically turns back on after a plant
+power outage.
+
+NETWORK
+-------
+Ask IT to create a DHCP reservation/static reservation for the mini-PC.
+This keeps the dashboard URL from changing.
+
+Example:
+http://10.x.x.x:8000
+
+Do NOT port-forward TCP 8000 to the public Internet.
+
+RECOMMENDED HARDWARE
+--------------------
+- Mini-PC powered 24/7
+- Wired Ethernet
+- Small UPS for mini-PC
+- Ideally the plant network switch/router serving it is also UPS-backed
+
+NORMAL DAILY USE
+----------------
+No Command Prompt needs to stay open.
+The dashboard runs under Windows Task Scheduler as SYSTEM.
+
+Useful files:
+- OPEN_DASHBOARD.bat
+- DASHBOARD_STATUS.bat
+- RESTART_DASHBOARD.ps1
+- SHOW_NETWORK_INFO.bat
+- logs\
+
+SECURITY
+--------
+Keep .env private. It contains dashboard credentials/tokens.
+This package is for LAN use. For access from outside the plant, add a secure
+VPN/tunnel plus authentication and HTTPS.

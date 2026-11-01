@@ -1,0 +1,20 @@
+# Replace dashboard.example.com and the username/hash before enabling public HTTPS.
+# Generate the password hash with:
+# docker run --rm caddy:2-alpine caddy hash-password --plaintext 'YOUR_STRONG_VIEWER_PASSWORD'
+
+dashboard.example.com {
+    encode zstd gzip
+
+    basic_auth {
+        pbfviewer REPLACE_WITH_CADDY_PASSWORD_HASH
+    }
+
+    reverse_proxy dashboard:8000
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options SAMEORIGIN
+        Referrer-Policy strict-origin-when-cross-origin
+        -Server
+    }
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PBF Trends</title><link rel="stylesheet" href="/static/style.css?v=6.2.0"></head>
+<body><header class="topbar"><div class="brand"><img class="rise-logo" src="/static/rise-logo.png" alt="Rise Baking Company"><div><div class="eyebrow">PBF RISE BAKING BURNABY</div><h1>Temperature & Humidity Trends</h1><p>Historical graphs · industrial control room theme · v6.2.0 · Designed by Daniel Salazar</p></div></div>
+<nav><a href="/">Dashboard</a><a class="active" href="/trends">Trends</a><a href="/events">Events</a><a href="/audit">Audit</a><a href="/settings">Settings</a></nav><div id="conn" class="connection">Connecting…</div></header>
+<main><section class="section-head"><div><span class="eyebrow">HISTORY</span><h2>Logger Trends</h2><p>Temperature and relative humidity are separated for easier reading.</p></div>
+<div class="actions"><button data-min="60">1 Hour</button><button data-min="1440" class="primary">24 Hours</button><button data-min="10080">7 Days</button><button onclick="toggleUnit()">°C / °F</button></div></section>
+<section class="trend-download-bar">
+  <div><strong>Excel Export</strong><span>Downloads follow the selected trend range for temperature and humidity.</span></div>
+  <button id="downloadAll" class="primary" onclick="downloadAllLoggers()">Download 24 Hours - All Loggers Temp + RH CSV</button>
+</section>
+<section class="history-calendar-panel">
+  <div class="history-calendar-title">
+    <span class="eyebrow">HISTORICAL DOWNLOAD</span>
+    <h3>Calendar Date Logger History</h3>
+    <p>Select the logger and exact month, day and year. The CSV contains the full Pacific-Time calendar day for Temperature + Relative Humidity.</p>
+  </div>
+  <div class="history-calendar-controls">
+    <label>Logger
+      <select id="historyLogger">
+        <option value="ALL">All Loggers</option>
+      </select>
+    </label>
+    <label>Calendar Date
+      <input id="historyDate" type="date">
+    </label>
+    <button class="primary history-download-button" type="button" onclick="downloadCalendarHistory()">Download Selected Date CSV</button>
+  </div>
+  <div id="historyMessage" class="history-message"></div>
+</section>
+<section id="trendGrid" class="trend-grid"></section></main>
+<footer>Quick CSV buttons follow 1 Hour / 24 Hours / 7 Days. Calendar History exports any selected past date.</footer>
+<script src="/static/trends.js?v=6.2.0"></script></body></html>

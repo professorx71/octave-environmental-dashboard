@@ -1,0 +1,17 @@
+PBF Rise Baking Burnaby Environmental Monitoring Dashboard v5.1.4
+
+Revision:
+- Header branding: PBF Rise Baking Burnaby
+- Added supplied Rise Baking Company logo
+- Tortilla T1 -> Tortilla T1 Cooler
+- Tortilla T2 -> Tortilla L2 Cooler
+- Tortilla T3 -> Tortilla L3 Cooler
+- Bagel -> Bagel Cooler
+- BP1 -> Bagel Proofer 1
+- BP2 -> Bagel Proofer 2
+- Names propagate from server to dashboard, alarm banner, event log, Gmail and ntfy notifications.
+- LAN access retained.
+- Dashboard / Trends / Events retained.
+- Alarm banner and C/F control remain on first page.
+
+Install into a NEW folder, copy your private .env, run enable_lan_firewall.bat once if needed, then start_dashboard.bat.

@@ -1,0 +1,34 @@
+PBF Rise Baking Burnaby Dashboard v6.0.0
+
+NEW: PER-LOGGER CALIBRATION OFFSETS
+- Temperature offset: -20.0 to +20.0 C, 0.1 C steps.
+- Humidity offset: -50.0 to +50.0 %RH, 0.1 %RH steps.
+- Adjusted reading = LI-COR raw reading + offset.
+- Humidity adjusted value is clamped to 0-100 %RH.
+- Adjusted readings are used on Dashboard, 6-hour charts, Trends, CSV reports and temperature alarm evaluation.
+- Offset changes are recorded in Events.
+- Only Admin can change calibration offsets.
+
+NEW: ADMIN / OPERATOR ROLES
+ADMIN can change:
+- Temperature alarm setpoints
+- RUNNING / NOT IN USE
+- Temperature and humidity calibration offsets
+- Alarm schedules
+- Admin password
+- Operator username/password
+
+OPERATOR can change ONLY:
+- Alarm notification schedule for individual loggers
+- Apply Mon-Fri 24H schedule to all loggers
+
+OPERATOR SETUP
+Option 1: Login as Admin -> Settings -> Account Security -> Set / Reset Operator Login.
+Option 2: Run SET_OPERATOR_PASSWORD.bat on the mini-PC, then restart the dashboard.
+
+UPGRADE
+1. Extract v6.0.0 into a new folder.
+2. Copy the existing private .env into the new folder.
+3. Run INSTALL_ALWAYS_ON_MINIPC.bat as Administrator.
+4. Press Ctrl+F5 once in browser after restart.
+5. Login as Admin and create the Operator account.

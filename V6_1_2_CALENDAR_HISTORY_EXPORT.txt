@@ -1,0 +1,24 @@
+PBF Rise Baking Burnaby Dashboard v6.1.2
+Calendar Date Logger History Export
+
+NEW ON TRENDS:
+- Historical Download panel with a browser calendar.
+- Select exact month, day and year.
+- Select one logger or All Loggers.
+- Download the full selected Pacific-Time calendar day.
+- CSV includes calibrated Temperature + Relative Humidity.
+- Exact historical date is included in the file name.
+- Future dates are blocked.
+- Existing 1 Hour / 24 Hours / 7 Days quick downloads remain unchanged.
+
+EXAMPLES:
+- Select Logger: Tortilla L1 Cooler
+  Date: 2026-09-15
+  File: PBF_T1_Temp_Humidity_2026-09-15.csv
+
+- Select Logger: All Loggers
+  Date: 2026-09-15
+  File: PBF_All_Loggers_Temp_Humidity_2026-09-15.csv
+
+The backend requests the selected 24-hour day in 6-hour LI-COR chunks for reliability.
+Historical availability depends on data retained by LI-COR Cloud.

@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PBF Rise Baking Burnaby - Environmental Monitoring</title>
+<link rel="stylesheet" href="/static/style.css?v=6.2.0">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <img class="rise-logo" src="/static/rise-logo.png" alt="Rise Baking Company">
+    <div>
+      <div class="eyebrow">PBF RISE BAKING BURNABY</div>
+      <h1>Environmental Monitoring</h1>
+      <p>Industrial control room theme · v6.2.0 · Designed by Daniel Salazar</p>
+    </div>
+  </div>
+  <nav>
+    <a class="active" href="/">Dashboard</a>
+    <a href="/trends">Trends</a>
+    <a href="/events">Events</a><a href="/audit">Audit</a><a href="/settings">Settings</a>
+  </nav>
+  <div id="conn" class="connection">Connecting…</div>
+</header>
+
+<main>
+  <section id="alarmBanner" class="alarm-banner hidden">
+    <div>
+      <strong>ACTIVE TEMPERATURE ALARM</strong>
+      <div id="alarmText"></div>
+    </div>
+    <button onclick="acknowledge()">ACKNOWLEDGE</button>
+  </section>
+
+  <section class="hero-grid">
+    <div class="hero-card">
+      <span>Normal</span>
+      <strong id="normal">--</strong>
+      <small>Online & within limits</small>
+    </div>
+    <div class="hero-card alarm-count">
+      <span>Active alarms</span>
+      <strong id="alarms">--</strong>
+      <small>Require attention</small>
+    </div>
+    <div class="hero-card">
+      <span>Online</span>
+      <strong id="online">--</strong>
+      <small>Fresh logger data</small>
+    </div>
+    <div class="hero-card">
+      <span>Offline / stale</span>
+      <strong id="offline">--</strong>
+      <small>Communication check</small>
+    </div>
+    <div class="hero-card suppress-count">
+      <span>Not in use</span>
+      <strong id="suppressed">--</strong>
+      <small>Alarm monitoring suppressed</small>
+    </div>
+  </section>
+
+  <section class="section-head dashboard-head">
+    <div>
+      <span class="eyebrow">LIVE CONDITIONS</span>
+      <h2>Temperature & Humidity</h2>
+      <p>Live readings with 6-hour temperature and humidity graphics.</p>
+    </div>
+    <div class="actions">
+      <div class="unit-switch" aria-label="Temperature unit">
+        <span>Temperature Unit:</span>
+        <button id="cBtn" class="unit-active" onclick="setUnit(false)">°C</button>
+        <button id="fBtn" onclick="setUnit(true)">°F</button>
+      </div>
+      <a class="button primary" href="/trends">View Trends →</a>
+    </div>
+  </section>
+
+  <section id="cards" class="instrument-grid graph-dashboard"></section>
+
+  <section class="panel">
+    <div class="section-head compact">
+      <div>
+        <span class="eyebrow">HEALTH</span>
+        <h2>Logger Communication</h2>
+        <p>Online ≤ 15 min · Stale > 15 min · Offline > 30 min.</p>
+      </div>
+    </div>
+    <div id="status"></div>
+  </section>
+</main>
+
+<footer>
+  PBF Rise Baking Burnaby · Environmental Monitoring Dashboard · Designed by Daniel Salazar · v6.2.0
+</footer>
+<script src="/static/dashboard.js?v=6.2.0"></script>
+</body>
+</html>

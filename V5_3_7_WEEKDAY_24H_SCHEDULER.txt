@@ -1,0 +1,20 @@
+PBF Rise Baking Burnaby Dashboard v6.0.0
+
+NEW WEEKDAY 24-HOUR NOTIFICATION SCHEDULER
+
+Plant scenario:
+- Monday: alarm notifications ON 24 hours
+- Tuesday: alarm notifications ON 24 hours
+- Wednesday: alarm notifications ON 24 hours
+- Thursday: alarm notifications ON 24 hours
+- Friday: alarm notifications ON 24 hours
+- Saturday: alarm notifications OFF all day
+- Sunday: alarm notifications OFF all day
+
+Settings > Admin Login now provides:
+1. One-click: Apply Mon-Fri 24H to ALL Loggers.
+2. Per-logger preset: Mon-Fri 24H / Sat-Sun OFF.
+3. Per-day ON/OFF switches for every logger.
+4. Schedule type: 24 hours on selected days OR custom ON/OFF times.
+
+The scheduler controls alarm notifications only. Temperature and humidity readings continue to display and log during OFF days. NOT IN USE remains a master suppression setting.

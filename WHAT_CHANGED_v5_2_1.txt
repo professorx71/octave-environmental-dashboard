@@ -1,0 +1,13 @@
+PBF Rise Baking Burnaby Dashboard v5.2.1
+
+Updates:
+1. Temperature graphic changed to a thermometer icon.
+2. Humidity graphic changed to a water-drop icon.
+3. Background refreshed to a softer, more pleasant cool blue:
+   Suggested background color: #EEF5FB
+4. Card surfaces use a cleaner white overlay for better readability.
+5. Version updated to v5.2.1.
+
+Recommended look:
+- Main page background: #EEF5FB
+- This gives a cleaner, cooler, easier-on-the-eyes monitoring screen.

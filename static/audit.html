@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PBF CMS Audit Controls</title>
+<link rel="stylesheet" href="/static/style.css?v=6.2.0">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <img class="rise-logo" src="/static/rise-logo.png" alt="Rise Baking Company">
+    <div><div class="eyebrow">PBF RISE BAKING BURNABY</div><h1>CMS Audit Controls</h1>
+      <p>Calibration · audit trail · deviations · retention · backup · read-only PDF · v6.2.0</p></div>
+  </div>
+  <nav><a href="/">Dashboard</a><a href="/trends">Trends</a><a href="/events">Events</a><a class="active" href="/audit">Audit</a><a href="/settings">Settings</a></nav>
+</header>
+
+<main>
+  <section class="section-head">
+    <div><span class="eyebrow">AUDIT-SUPPORTING CONTROLS</span><h2>Environmental Monitoring Records</h2>
+      <p>Supports maintenance, QA and food-safety record review. This dashboard does not by itself certify compliance with a specific audit scheme.</p></div>
+    <div class="actions"><a class="button-link" href="/api/audit-trail.csv">Download Audit Trail CSV</a><button onclick="loadAll()">Refresh</button></div>
+  </section>
+
+  <section class="audit-status-grid">
+    <article class="hero-card"><span>Plant timezone</span><strong id="auditTimezone">--</strong><small id="auditClock">--</small></article>
+    <article class="hero-card"><span>Local record retention</span><strong id="auditRetention">--</strong><small>Alarm / audit / downtime records</small></article>
+    <article class="hero-card"><span>Latest data backup</span><strong id="auditBackup">--</strong><small id="auditBackupTime">--</small></article>
+    <article class="hero-card"><span>Current access</span><strong id="auditRole">READ-ONLY</strong><small id="auditUser">Login in Settings to edit</small></article>
+  </section>
+
+  <section class="panel audit-panel">
+    <div class="section-head compact"><div><span class="eyebrow">READ-ONLY RECORD</span><h2>Audit PDF Report</h2>
+      <p>Select a logger and calendar date. The report includes daily min/max/average, alarm count, downtime, calibration reference, acknowledgement, and corrective action.</p></div></div>
+    <div class="audit-form-grid three">
+      <label>Logger<select id="reportLogger"><option value="ALL">All Loggers</option></select></label>
+      <label>Calendar Date<input id="reportDate" type="date"></label>
+      <button class="primary" onclick="downloadAuditReport()">Download Modification-Restricted PDF</button>
+    </div>
+    <div class="admin-note"><b>Record integrity:</b> each PDF contains a SHA-256 hash of the underlying report dataset. PDF modification is restricted; this is not a cryptographic digital signature.</div>
+  </section>
+
+  <section class="panel audit-panel">
+    <div class="section-head compact"><div><span class="eyebrow">ADMIN</span><h2>Calibration Record</h2>
+      <p>Document reference instrument, offsets, calibration date, next due date and technician. Saving the record applies the documented offsets to the live logger.</p></div></div>
+    <div class="audit-form-grid">
+      <label>Logger<select id="calLogger"></select></label>
+      <label>Calibration Date<input id="calDate" type="date"></label>
+      <label>Next Calibration Due<input id="calDue" type="date"></label>
+      <label>Reference Instrument<input id="calReference" placeholder="e.g., certified thermometer"></label>
+      <label>Reference Serial / Asset ID<input id="calReferenceSerial"></label>
+      <label>Certificate ID<input id="calCertificate"></label>
+      <label>Temperature Offset (°C)<input id="calTempOffset" type="number" step="0.1" value="0"></label>
+      <label>Humidity Offset (%RH)<input id="calRhOffset" type="number" step="0.1" value="0"></label>
+      <label>Performed By<input id="calPerformedBy"></label>
+      <label class="wide">Notes<textarea id="calNotes" rows="2"></textarea></label>
+      <button id="saveCalibrationBtn" class="primary wide" onclick="saveCalibration()">Save Calibration Record + Apply Offsets</button>
+    </div>
+    <div id="calMsg" class="admin-message"></div>
+    <div class="tablewrap audit-table"><table><thead><tr><th>Date</th><th>Logger</th><th>Temp Offset</th><th>RH Offset</th><th>Reference</th><th>Certificate</th><th>Next Due</th><th>Performed By</th></tr></thead><tbody id="calibrationRows"></tbody></table></div>
+  </section>
+
+  <section class="panel audit-panel">
+    <div class="section-head compact"><div><span class="eyebrow">ADMIN / OPERATOR</span><h2>Alarm Deviation & Corrective Action</h2>
+      <p>Attach maintenance/QA action to a recorded temperature alarm episode so the audit report shows what happened and what was done.</p></div></div>
+    <div class="audit-form-grid">
+      <label class="wide">Alarm Episode<select id="devEpisode"></select></label>
+      <label>Status<select id="devStatus"><option>OPEN</option><option>CLOSED</option></select></label>
+      <label>Department<select id="devDepartment"><option>Maintenance</option><option>QA / Food Safety</option><option>Operations</option><option>Engineering</option></select></label>
+      <label>Responsible Person<input id="devResponsible"></label>
+      <label>Reviewed By<input id="devReviewedBy"></label>
+      <label>Review Date<input id="devReviewDate" type="date"></label>
+      <label class="wide">Root Cause<textarea id="devRootCause" rows="2"></textarea></label>
+      <label class="wide">Corrective Action<textarea id="devCorrective" rows="3"></textarea></label>
+      <label class="wide">Product Disposition / Food-Safety Decision<textarea id="devDisposition" rows="2"></textarea></label>
+      <label class="wide">Additional Notes<textarea id="devNotes" rows="2"></textarea></label>
+      <button id="saveDeviationBtn" class="primary wide" onclick="saveDeviation()">Save Deviation / Corrective Action</button>
+    </div>
+    <div id="devMsg" class="admin-message"></div>
+  </section>
+
+  <section class="panel audit-panel">
+    <div class="section-head compact"><div><span class="eyebrow">ADMIN</span><h2>Retention & Backup</h2>
+      <p>Local audit, alarm and downtime records can be retained for 1–3 years. Automated backups contain data/configuration JSON only; secret credentials in .env are intentionally excluded.</p></div></div>
+    <div class="audit-form-grid">
+      <label>Retention<select id="retentionYears"><option value="1">1 Year</option><option value="2">2 Years</option><option value="3">3 Years</option></select></label>
+      <label>Automatic Backup<select id="backupEnabled"><option value="true">ENABLED</option><option value="false">DISABLED</option></select></label>
+      <label>Daily Backup Time — Pacific<input id="backupTime" type="time" value="02:15"></label>
+      <label>Keep Daily Backups<input id="backupKeep" type="number" min="7" max="365" value="30"></label>
+      <button id="saveAuditConfigBtn" class="primary" onclick="saveAuditConfig()">Save Retention / Backup Settings</button>
+      <button id="backupNowBtn" onclick="backupNow()">Create Backup Now</button>
+      <button id="downloadBackupBtn" onclick="downloadLatestBackup()">Download Latest Backup</button>
+    </div>
+    <div id="backupMsg" class="admin-message"></div>
+    <div class="admin-note"><b>Recovery:</b> the backup ZIP contains alarm events, acknowledgement state, logger settings, downtime history, calibration records, deviations, audit trail and report settings. Keep a separate protected backup of the server .env credentials.</div>
+  </section>
+
+  <section class="panel audit-panel">
+    <div class="section-head compact"><div><span class="eyebrow">AUDIT TRAIL</span><h2>Recent Configuration & Alarm Activity</h2>
+      <p>Login/logout, alarms, acknowledgements, configuration changes, calibration records, corrective actions, report activity and backups.</p></div></div>
+    <div class="tablewrap audit-table"><table><thead><tr><th>Pacific Time</th><th>Category</th><th>Action</th><th>Actor</th><th>Logger</th><th>Detail</th></tr></thead><tbody id="auditRows"></tbody></table></div>
+  </section>
+</main>
+<footer>PBF Rise Baking Burnaby · CMS Audit-Supporting Controls · v6.2.0</footer>
+<script src="/static/audit.js?v=6.2.0"></script>
+</body>
+</html>

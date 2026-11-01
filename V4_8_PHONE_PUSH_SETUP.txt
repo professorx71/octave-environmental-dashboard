@@ -1,0 +1,31 @@
+PBF LI-COR DASHBOARD v4.8 - FREE PHONE PUSH
+Designed by Daniel Salazar
+
+This version keeps Gmail alarms and adds free phone push notifications using ntfy.
+
+ALARM LOGIC
+- Alarm begins: Gmail + phone push immediately.
+- Alarm remains active: Gmail + phone push every 5 minutes.
+- Alarm clears: Gmail + recovery phone push.
+- Dashboard/server must remain running and connected to the Internet.
+
+PHONE SETUP
+1. Install the ntfy app on your phone (Android or iPhone), or install its PWA.
+2. Choose a LONG RANDOM PRIVATE topic, for example:
+   pbf-temp-8f4c2a91-CHANGE-THIS
+   Do NOT use your name, phone number, plant name, or an easy-to-guess topic.
+3. Subscribe to exactly that topic in the ntfy phone app.
+4. Add these lines to your existing private .env:
+   NTFY_BASE_URL=https://ntfy.sh
+   NTFY_TOPIC=your-long-random-private-topic
+5. Save .env and restart start_dashboard.bat.
+6. In the dashboard click TEST PHONE PUSH.
+7. Use PUSH STATUS if no notification arrives.
+
+SECURITY
+- Treat the topic name like a password because unreserved ntfy.sh topics can be discoverable if guessed.
+- Never post your .env or private topic in screenshots/chat.
+- For production/critical monitoring, consider a reserved/authenticated ntfy topic or self-hosting.
+
+NOTE
+This dashboard is supplemental monitoring. Validate notification delivery and alarm procedures before relying on it for food-safety or personnel-safety functions.

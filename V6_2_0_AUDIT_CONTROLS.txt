@@ -1,0 +1,78 @@
+PBF Rise Baking Burnaby Dashboard v6.2.0
+AUDIT-SUPPORTING CMS CONTROLS
+
+New Audit page:
+1. Calibration records per logger:
+   - calibration date
+   - temperature and humidity offsets
+   - reference instrument and serial/asset ID
+   - calibration certificate ID
+   - performed by
+   - next calibration due
+   - notes
+   Saving a calibration record applies the documented offsets to live monitoring.
+
+2. Access control:
+   - Admin retains full configuration/calibration/account/retention/backup access.
+   - Operator retains schedule access and may document alarm corrective actions.
+   - Audit page is read-only when no Admin/Operator settings session is active.
+   - Login/logout events are recorded.
+
+3. Expanded audit trail:
+   - alarms
+   - acknowledgements
+   - configuration changes
+   - schedule changes
+   - calibration changes/records
+   - deviation/corrective action updates
+   - login/logout
+   - report and backup activity
+   Event deletion from the dashboard is disabled.
+
+4. Time records:
+   - source timestamps stored in UTC
+   - plant display/report timezone America/Vancouver
+   - audit status displays both server UTC and Pacific time.
+
+5. Local data retention:
+   - selectable 1, 2 or 3 years
+   - default 3 years
+   - applies to local alarm/event, audit, downtime and deviation history
+   NOTE: LI-COR Cloud raw-history retention remains dependent on the LI-COR service.
+
+6. Backup and recovery:
+   - automatic daily data/config ZIP backup, default 02:15 Pacific
+   - default keeps 30 backups
+   - manual "Create Backup Now"
+   - Admin may download the latest backup
+   - .env credentials are intentionally excluded from downloadable audit backups.
+
+7. Alarm deviation documentation:
+   - root cause
+   - corrective action
+   - responsible person
+   - department
+   - open/closed status
+   - QA/management review fields
+   - product disposition / food-safety decision
+   - notes
+   - linked to the original alarm downtime episode.
+
+8. Alarm acknowledgement:
+   - dashboard prompts for name/initials
+   - acknowledgement name/time is retained with the alarm history.
+
+9. Read-only audit PDF:
+   - exact logger/date or all-loggers/date report
+   - daily min/max/average temperature
+   - alarm events and downtime
+   - longest event
+   - calibration reference
+   - acknowledgement
+   - corrective action/root cause/product disposition
+   - SHA-256 hash of the source record snapshot
+   - PDF modification permission restricted; printing/copying allowed
+   IMPORTANT: This is audit-supporting and tamper-evident-by-hash, not a digital signature.
+
+This software can support a customer's food-safety / quality record system, but it
+does not by itself certify SQF, BRCGS, HACCP, GFSI, CFIA, FDA or other compliance.

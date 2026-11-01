@@ -1,0 +1,13 @@
+PBF Rise Baking Burnaby Dashboard v6.0.0
+
+What was fixed:
+1) Forced cache refresh by changing all static file version parameters to v6.0.0.
+   This fixes old browser-cached JavaScript/CSS still showing the old 24-HOUR TREND label.
+2) Live dashboard label is 6-Hour Trend for all logger cards.
+3) Settings page text now clearly calls out the Alarm Notification Scheduler after admin login.
+
+Important:
+- Open the dashboard and press Ctrl+F5 once after upgrading.
+- The scheduler is visible only on the Settings page after successful admin login.
+- The scheduler appears inside each logger card with:
+  Weekly scheduler, Alarm ON time, Alarm OFF time, and Active days (Mon-Sun).

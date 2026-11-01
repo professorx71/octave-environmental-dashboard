@@ -1,0 +1,16 @@
+PBF LI-COR Dashboard v5.1.2
+Robust fix for /trends and /events Internal Server Error.
+
+The two navigation routes now redirect to files already served by FastAPI's
+working /static mount. This removes the page FileResponse path dependency.
+
+IMPORTANT:
+- Stop every old dashboard Command Prompt window first.
+- Extract v5.1.2 into a NEW folder.
+- Copy only your private .env into the new folder.
+- Run start_dashboard.bat from the v5.1.2 folder.
+- Open http://localhost:8000 and Ctrl+F5.
+
+Direct diagnostic URLs:
+http://localhost:8000/static/trends.html
+http://localhost:8000/static/events.html
